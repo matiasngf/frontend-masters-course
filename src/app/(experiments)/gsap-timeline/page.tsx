@@ -29,40 +29,41 @@ function TitleSection() {
         type: "words, chars",
         wordsClass: "title-word++",
         charsClass: "title-char++",
+        mask: "chars",
       });
 
       const tl = gsap.timeline();
 
-      tl.from(".title-word1 > .title-char", {
+      tl.from(".title-word1 .title-char", {
         duration: 0.5,
         autoAlpha: 0,
         y: 100,
-        stagger: 0.08,
+        stagger: 0.07,
         ease: "circ.out",
       });
 
       tl.from(
-        ".title-word2 > .title-char",
+        ".title-word2 .title-char",
         {
-          duration: 0.3,
+          duration: 0.2,
           autoAlpha: 0,
           x: -100,
-          stagger: 0.08,
+          stagger: 0.07,
           ease: "circ.out",
         },
         "-=0.5s"
       );
 
       tl.from(
-        ".title-word3 > .title-char",
+        ".title-word3 .title-char",
         {
-          duration: 0.4,
+          duration: 0.3,
           autoAlpha: 0,
           y: -100,
-          stagger: 0.08,
+          stagger: 0.07,
           ease: "circ.out",
         },
-        "-=0.6s"
+        "-=0.5s"
       );
 
       tl.to(
