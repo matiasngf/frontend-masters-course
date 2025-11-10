@@ -1,20 +1,20 @@
 "use client";
 
 import gsap from "gsap";
-import { Antonio } from "next/font/google";
+import { Orbitron } from "next/font/google";
 import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import { SplitText } from "gsap/all";
 
 gsap.registerPlugin(SplitText);
 
-const antonio = Antonio({
+const orbitron = Orbitron({
   subsets: ["latin"],
 });
 
 export default function Page() {
   return (
-    <div className={antonio.className}>
+    <div className={orbitron.className}>
       <TitleSection />
     </div>
   );
@@ -28,37 +28,60 @@ function TitleSection() {
       const split = SplitText.create(".title", {
         type: "words, chars",
         wordsClass: "title-word++",
+        charsClass: "title-char++",
       });
 
       const tl = gsap.timeline();
 
-      tl.from(split.chars, {
+      tl.from(".title-word1 > .title-char", {
         duration: 0.8,
         autoAlpha: 0,
-        y: 200,
-        stagger: 0.03,
+        y: 100,
+        stagger: 0.04,
         ease: "circ.out",
       });
 
-      tl.to(
-        ".gsap-word",
+      tl.from(
+        ".title-word2 > .title-char",
         {
-          "--weight": 700,
-          fontSize: "14rem",
+          duration: 0.5,
+          autoAlpha: 0,
+          x: -100,
+          stagger: 0.04,
           ease: "circ.out",
-          duration: 0.4,
+        },
+        "-=0.8s"
+      );
+
+      tl.from(
+        ".title-word3 > .title-char",
+        {
+          duration: 0.5,
+          autoAlpha: 0,
+          y: -100,
+          stagger: 0.04,
+          ease: "circ.out",
         },
         "-=0.6s"
       );
 
-      tl.to(
-        ".basics-word",
+      tl.from(
+        ".tl-start",
         {
-          letterSpacing: "0.1em",
-          ease: "circ.out",
-          duration: 0.6,
+          width: 0,
+          duration: 0.1,
         },
-        "<+0.2s"
+        0.2
+      );
+
+      tl.from(
+        ".tl-main",
+        {
+          width: 0,
+          duration: 0.5,
+          ease: "circ.out",
+        },
+        0.3
       );
     },
     {
@@ -69,17 +92,21 @@ function TitleSection() {
   return (
     <div
       ref={containerRef}
-      className="bg-blue-300 text-black flex h-screen items-end justify-left"
+      className="bg-[#E5E5E5] text-[#2A2A2A] flex h-screen items-center justify-center tracking-tighter"
     >
-      <h1 className="title font-thin text-[20rem] leading-none pb-[0.1em] text-left">
-        <span
-          className="gsap-word [font-variation-settings:'wght'_var(--weight)]"
-          style={{ "--weight": 100 } as React.CSSProperties}
-        >
-          GSAP
+      <h1 className="title font-bold text-[20vh] flex flex-col gap-[0.2em] leading-none text-left uppercase">
+        <span className="relative block right-[1.5em] text-left">GSAP</span>
+        <span className="relative block">
+          <span>timeline</span>
+          {/* Timeline */}
+          <div className="absolute w-full -bottom-2 h-2">
+            <div className="tl-main absolute w-full bottom-0 h-2 bg-orange-500" />
+            <div className="tl-start absolute left-0 top-1/2 -translate-y-1/2 h-8 w-2 bg-orange-500" />
+          </div>
+          {/* Dot */}
+          <div className="tl-dot absolute -top-2 -right-4 h-4 aspect-square bg-orange-500" />
         </span>
-        <br />
-        <span className="basics-word">basics</span>
+        <span className="relative block left-[1.6em] text-right">basics</span>
       </h1>
     </div>
   );
