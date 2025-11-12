@@ -19,7 +19,6 @@ export default function Page() {
     </div>
   );
 }
-
 function TitleSection() {
   const containerRef = useRef<HTMLDivElement>(null);
 
