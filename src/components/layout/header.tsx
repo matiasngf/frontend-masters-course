@@ -14,10 +14,10 @@ export function Header() {
   const pathname = usePathname();
 
   return (
-    <header className="fixed top-4 right-4 z-50">
+    <header className="fixed top-4 left-4 z-1000">
       <DropdownMenu>
         <DropdownMenuTrigger className="px-3 py-1.5 text-sm border rounded-md bg-white/80 backdrop-blur-sm hover:bg-white transition-colors outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300">
-          Experiments
+          Menu
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end" className="min-w-[180px]">
           {experiments.map((experiment) => {

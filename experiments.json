@@ -1,26 +1,18 @@
 [
   {
-    "url": "/frame-loop",
-    "name": "Frame Loop"
+    "url": "/1-gsap-basics",
+    "name": "1 Gsap Basics"
   },
   {
-    "url": "/gsap-basics",
-    "name": "Gsap Basics"
+    "url": "/2-timelines",
+    "name": "2 Timelines"
   },
   {
-    "url": "/gsap-pin",
-    "name": "Gsap Pin"
+    "url": "/3-scroll-trigger",
+    "name": "3 Scroll Trigger"
   },
   {
-    "url": "/gsap-scroll-trigger",
-    "name": "Gsap Scroll Trigger"
-  },
-  {
-    "url": "/gsap-timeline",
-    "name": "Gsap Timeline"
-  },
-  {
-    "url": "/smooth-scroll",
-    "name": "Smooth Scroll"
+    "url": "/4-pin",
+    "name": "4 Pin"
   }
 ]
