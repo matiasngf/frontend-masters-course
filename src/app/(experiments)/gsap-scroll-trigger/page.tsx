@@ -1,16 +1,20 @@
 "use client";
 
-import { DrawSVGPlugin } from "gsap/all";
+import { DrawSVGPlugin, ScrollTrigger } from "gsap/all";
 import gsap from "gsap";
 import { Highlighted1, Highlighted2, Highlighted3 } from "./highlights";
+import { useGSAP } from "@gsap/react";
+import { useRef } from "react";
 
 gsap.registerPlugin(DrawSVGPlugin);
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Page() {
   return (
     <>
       <TitleSection />
       <DescriptionSection />
+      <div className="h-screen" />
     </>
   );
 }
@@ -37,9 +41,41 @@ function TitleSection() {
 }
 
 function DescriptionSection() {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(
+    () => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          start: "top center",
+          end: "bottom 10%",
+          trigger: ".title-container",
+          markers: true,
+          toggleActions: "play reset play reverse",
+        },
+      });
+
+      tl.from("h2", {
+        opacity: 0,
+        duration: 1,
+      });
+
+      tl.from("path", {
+        drawSVG: 0,
+        stagger: 0.5,
+      });
+    },
+    {
+      scope: containerRef,
+    }
+  );
+
   return (
-    <div className="h-screen w-screen p-10 flex items-stretch justify-stretch">
-      <div className="border-2 border-(--line) p-10 w-full flex items-center justify-center">
+    <div
+      ref={containerRef}
+      className="h-screen w-screen p-10 flex items-stretch justify-stretch"
+    >
+      <div className="title-container border-2 border-(--line) p-10 w-full flex items-center justify-center">
         <h2 className="text-[6vh] leading-[1.4] text-center text-balance max-w-7xl">
           <ScrollTriggerWord /> enables anyone to create{" "}
           <span className="whitespace-nowrap">jaw-dropping</span>{" "}
