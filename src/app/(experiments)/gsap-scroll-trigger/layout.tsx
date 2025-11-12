@@ -1,17 +1,17 @@
-import { lora } from "@/src/fonts/lora";
-import noise from "@/public/noise-overlay-300.png";
+import { lora } from "@/fonts/lora";
+import noise from "@/../public/noise-overlay-300.png";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div
-      className={`${lora.className} bg-(--background) text-(--font)`}
+      className={`${lora.className} bg-(--bg) text-(--font)`}
       style={
         {
           "--dark-green": "#1DB000",
           "--light-green": "#3CDE1B",
           "--font": "#3C3C3C",
           "--line": "#C6C6C6",
-          "--background": "#ffffff",
+          "--bg": "#ffffff",
         } as React.CSSProperties
       }
     >
